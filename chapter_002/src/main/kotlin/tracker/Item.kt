@@ -1,5 +1,7 @@
 package tracker
 
+import java.util.StringJoiner
+
 /**
  * Класс заявки.
  * @author Vadim Bolokhov
@@ -7,6 +9,11 @@ package tracker
 class Item {
 
     constructor() : this(desc = "Default Item", name = "Default description", created = System.currentTimeMillis()) {
+    }
+
+    constructor(name: String, desc: String) {
+        this.name = name
+        this.desc = desc
     }
 
     constructor(name: String, desc: String, created: Long) {
@@ -21,4 +28,11 @@ class Item {
     private var created: Long = 0L
     private val comments: List<String> = listOf()
 
+    override fun toString(): String {
+        return """
+            Name: $name
+            Description: $desc
+            id: $id
+        """.trimIndent()
+    }
 }

@@ -38,7 +38,7 @@ class Tracker {
     fun replace(id: String, replace: Item) {
         for (i in 0 until position) {
             if (items[i]?.id == id) {
-                replace.id = generateId()
+                replace.id = id
                 items[i] = replace
                 break
             }
