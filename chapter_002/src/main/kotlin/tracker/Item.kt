@@ -1,12 +1,10 @@
 package tracker
 
-import java.util.StringJoiner
-
 /**
  * Класс заявки.
  * @author Vadim Bolokhov
  */
-class Item {
+open class Item {
 
     constructor() : this(desc = "Default Item", name = "Default description", created = System.currentTimeMillis()) {
     }
@@ -22,9 +20,9 @@ class Item {
         this.created = created
     }
 
-    var id: String? = null
-    val name: String?
-    private var desc: String? = null
+    open var id: String? = null
+    open val name: String?
+    open var desc: String? = null
     private var created: Long = 0L
     private val comments: List<String> = listOf()
 
@@ -35,4 +33,19 @@ class Item {
             id: $id
         """.trimIndent()
     }
+}
+
+class EmptyItem(val message: String) : Item() {
+
+    companion object {
+        const val EMPTY: String = "<Empty Item>"
+    }
+
+    constructor() : this("Заявки не существует")
+
+    override var id: String? = EMPTY
+    override var name: String? = EMPTY
+    override var desc: String? = EMPTY
+
+    override fun toString() = message
 }
